@@ -22,7 +22,7 @@ export default function AddTodo({ showAddTodo }) {
         <form className="w-full" onSubmit={() => {}}>
           <input
             type="text"
-            placeholder="Add task here..."
+            placeholder="Add title..."
             className="w-[500px] md:w-[560px] py-2 my-4 border-none outline-none rounded-md pl-2 placeholder:text-neutral-500"
           />
           <Select
@@ -30,13 +30,14 @@ export default function AddTodo({ showAddTodo }) {
             onChange={setSelectedOption}
             options={options}
             value={selectedOption}
-            placeholder="Select a priority..."
+            placeholder="Select a priority label"
             styles={reactSelectStyles}
           />
 
           <input
             type="date"
             className="py-2 my-4 rounded-md px-2 outline-none w-full text-neutral-800 text-[11pt]"
+            placeholder="Due date"
           />
           <textarea
             name="textArea"
@@ -44,11 +45,11 @@ export default function AddTodo({ showAddTodo }) {
             cols="30"
             rows="5"
             className="w-full outline-none px-2 py-2 rounded-md  placeholder:text-neutral-500"
-            placeholder="Provide details here..."
+            placeholder="Add description..."
           ></textarea>
 
           <button className=" bg-[#ffea00] py-2 my-2 rounded-md mb-2 w-full font-semibold mt-8">
-            Submit
+            Add Todo
           </button>
         </form>
       </div>
