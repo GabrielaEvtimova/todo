@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/GabrielaEvtimova/todo#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "mongodb": "^6.7.0"
   }

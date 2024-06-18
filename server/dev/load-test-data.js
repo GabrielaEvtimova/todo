@@ -1,6 +1,5 @@
 import { connectClient, stopClient } from "../db.js";
 
-
 const main = async () => {
   const client = await connectClient();
 
@@ -9,10 +8,10 @@ const main = async () => {
   const resp = await client.collection("todos").insertMany([
     {
       id: "learn-backend",
-      todoName: "Learn Backend",
-      deadline: new Date(),
-      details: "Learn how to setup server and use MongoDB for database",
-      priority: "High",
+      todoTitle: "Learn Backend",
+      dueDate: new Date(),
+      description: "Learn how to setup server and use MongoDB for database",
+      label: "High",
     },
   ]);
 
