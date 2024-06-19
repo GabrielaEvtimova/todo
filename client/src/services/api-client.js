@@ -1,4 +1,4 @@
-import { apiServerUrl } from "../../../server/config";
+import { apiServerUrl } from "../../../server/config.js";
 
 export const getTodos = async () => {
   const resp = await fetch(`${apiServerUrl}/todos`);
@@ -7,4 +7,23 @@ export const getTodos = async () => {
   return data.todos;
 };
 
+export const addTodo = async (todoTitle, id, label, dueDate, description) => {
+  const todo = {
+    todoTitle: todoTitle,
+    id: id,
+    label: label,
+    dueDate: dueDate,
+    description: description,
+    completed: false,
+  };
+  const req = await fetch(`${apiServerUrl}/todos`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(todo),
+  });
 
+  const data = await req.json();
+  return data.todo;
+};

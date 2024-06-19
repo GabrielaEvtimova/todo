@@ -2,16 +2,38 @@ import PropTypes from "prop-types";
 import Select from "react-select";
 import { useState } from "react";
 import { reactSelectStyles } from "../../services/react-select-styles";
+import { addTodo } from "../../services/api-client.js";
+import toast from "react-hot-toast";
 
 const options = [
-  { value: "high", label: "High" },
-  { value: "medium", label: "Medium" },
-  { value: "low", label: "Low" },
+  { value: "High", label: "High" },
+  { value: "Medium", label: "Medium" },
+  { value: "Low", label: "Low" },
 ];
 
-export default function AddTodo({ showAddTodo }) {
-  
+export default function AddTodo({ showAddTodo, setShowAddTodo }) {
   const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleSubmit = async (e) => {
+    
+    const completedForm = e.currentTarget;
+    if (completedForm.todoTitle.value === "") {
+      e.preventDefault()
+      toast.error("You have to add todo title");
+    } else {
+      const todoTitle = completedForm.todoTitle.value;
+      const id = completedForm.todoTitle.value
+        .toLowerCase()
+        .replace(/\s/g, "-");
+      const label = completedForm.label.value;
+      const dueDate = new Date(completedForm.dueDate.value);
+      const description = completedForm.description.value;
+      await addTodo(todoTitle, id, label, dueDate, description);
+
+      setSelectedOption(null);
+      setShowAddTodo(!showAddTodo);
+    }
+  };
 
   return (
     showAddTodo && (
@@ -20,11 +42,12 @@ export default function AddTodo({ showAddTodo }) {
           Create New Task
         </h1>
 
-        <form className="w-full" onSubmit={() => {}}>
+        <form className="w-full" onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Add title..."
             className="w-[500px] md:w-[560px] py-2 my-4 border-none outline-none rounded-md pl-2 placeholder:text-neutral-500"
+            name="todoTitle"
           />
           <Select
             defaultValue={selectedOption}
@@ -33,16 +56,18 @@ export default function AddTodo({ showAddTodo }) {
             value={selectedOption}
             placeholder="Select a priority label"
             styles={reactSelectStyles}
+            name="label"
           />
 
           <input
             type="date"
-            className="py-2 my-4 rounded-md px-2 outline-none w-full text-neutral-800 text-[11pt]"
-            placeholder="Due date"
+            className="py-2 my-4 rounded-md px-2 outline-none w-full text-neutral-500 text-[11pt]"
+            name="dueDate"
           />
+
           <textarea
-            name="textArea"
-            id="textArea"
+            name="description"
+            id="description"
             cols="30"
             rows="5"
             className="w-full outline-none px-2 py-2 rounded-md  placeholder:text-neutral-500"
@@ -60,4 +85,5 @@ export default function AddTodo({ showAddTodo }) {
 
 AddTodo.propTypes = {
   showAddTodo: PropTypes.bool,
+  setShowAddTodo: PropTypes.func,
 };

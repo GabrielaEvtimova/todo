@@ -2,6 +2,7 @@ import { MongoClient } from "mongodb";
 import { databaseName, mongoDbUrl } from "./config.js";
 
 let connectedClient;
+
 export const connectClient = async () => {
   if (connectedClient) {
     return connectedClient.db(databaseName);
@@ -16,6 +17,7 @@ export const connectClient = async () => {
 
   return connectedClient.db(databaseName);
 };
+
 
 export const stopClient = async () => {
   await connectedClient?.close();

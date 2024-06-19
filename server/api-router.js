@@ -9,7 +9,6 @@ router.use(express.json());
 // A method to get all todos from MongoDB
 router.get("/todos", async (req, res) => {
   const client = await connectClient();
-  console.log(client)
   const todos = await client
     .collection("todos")
     .find()
@@ -19,7 +18,7 @@ router.get("/todos", async (req, res) => {
       description: 1,
       dueDate: 1,
       label: 1,
-      _id: 0,
+      _id: 1,
     })
     .toArray();
 
@@ -27,7 +26,24 @@ router.get("/todos", async (req, res) => {
 });
 
 router.post("/todos", async (req, res) => {
-    
+  const client = await connectClient();
+ 
+  const { todoTitle, id, label, dueDate, description } = req.body;
 
-})
+  const doc = await client.collection("todos").insertOne({
+    todoTitle,
+    id,
+    label,
+    dueDate,
+    description,
+    completed: false,
+  });
+
+  const todo = await client
+    .collection("todos")
+    .findOne({ _id: doc.insertedId });
+
+  res.send({ todo });
+});
+
 export default router;

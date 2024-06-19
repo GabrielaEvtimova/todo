@@ -4,7 +4,6 @@ import Todo from "../Todo/Todo";
 import PropTypes from "prop-types";
 
 export default function TodoList({ showAddTodo, setShowAddTodo }) {
-  
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -14,9 +13,9 @@ export default function TodoList({ showAddTodo, setShowAddTodo }) {
   return (
     <div className={`${!showAddTodo && "min-h-[84vh]"}`}>
       <h1
-        className={`flex justify-center mb-12 text-4xl text-white font-semibold ${
+        className={`flex justify-center mb-12 text-4xl text-white ${
           !showAddTodo ? "mt-80" : "mt-2"
-        } ${todos.length > 1 && !showAddTodo && "mt-[80px]"}`}
+        } ${todos.length > 0 && !showAddTodo && "mt-[80px]"}`}
       >
         Todo List
       </h1>
@@ -31,8 +30,11 @@ export default function TodoList({ showAddTodo, setShowAddTodo }) {
           })
         ) : (
           <p className="flex justify-center pb-4">
-            Good job! All todos are completed!
-            <span className="pl-1 hover:underline cursor-pointer" onClick={() => setShowAddTodo(!showAddTodo)}>
+            Great job! It seems you have completed all todos or never used this TodoApp!
+            <span
+              className="pl-1 hover:underline cursor-pointer"
+              onClick={() => setShowAddTodo(!showAddTodo)}
+            >
               Do you want to create one?
             </span>
           </p>
@@ -44,5 +46,5 @@ export default function TodoList({ showAddTodo, setShowAddTodo }) {
 
 TodoList.propTypes = {
   showAddTodo: PropTypes.bool,
-  setShowAddTodo: PropTypes.func
+  setShowAddTodo: PropTypes.func,
 };
