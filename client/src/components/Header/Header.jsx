@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 
 function Header({ setShowAddTodo, showAddTodo }) {
+  
   return (
-    <div className="flex mx-auto justify-between select-none">
+    <div className="flex mx-auto justify-between select-none fixed w-full opacity-90">
       <div className="w-full">
         <div
           className="flex justify-between font-bold text-2xl bg-[#0e1645] py-5 

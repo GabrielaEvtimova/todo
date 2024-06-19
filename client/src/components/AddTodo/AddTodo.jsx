@@ -10,11 +10,12 @@ const options = [
 ];
 
 export default function AddTodo({ showAddTodo }) {
+  
   const [selectedOption, setSelectedOption] = useState(null);
 
   return (
     showAddTodo && (
-      <div className="grid mt-16 justify-center items-center shadow-black shadow-lg w-[530px] md:w-[720px] py-4 pb-8">
+      <div className="grid mt-28 justify-center items-center shadow-black shadow-lg w-[520px] md:w-[720px] py-4 pb-8 ">
         <h1 className="flex items-center py-4 text-4xl w-full justify-center rounded-md text-white mb-4 shadow-inner shadow-neutral-900 mt-8">
           Create New Task
         </h1>
