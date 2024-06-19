@@ -52,15 +52,20 @@ router.post("/todos", async (req, res) => {
 
 router.delete("/todos/:id", async (res, req) => {
   const id = req.req.params.id;
-  
+
   const client = await connectClient();
   const todo = await client
     .collection("todos")
-    .deleteOne({_id: new ObjectId(id)});
+    .deleteOne({ _id: new ObjectId(id) });
 
-    // Note! Possible error here!
-   res.send(`Successful. ${todo.deletedCount} todo was deleted.`)
-
+  // Note! Possible error here!
+  res.send(
+    `${
+      todo.deletedCount === 0
+        ? `Something went wrong. Todo was not found`
+        : `Successful. ${todo.deletedCount} todo was deleted.`
+    }`
+  );
 });
 
 export default router;
