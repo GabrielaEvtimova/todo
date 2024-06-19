@@ -9,9 +9,26 @@ const main = async () => {
     {
       id: "learn-backend",
       todoTitle: "Learn Backend",
-      dueDate: new Date(),
+      dueDate: Date.now(),
       description: "Learn how to setup server and use MongoDB for database",
       label: "High",
+      completed: false,
+    },
+    {
+      id: "walk-the-dog",
+      todoTitle: "Walk the Dog",
+      dueDate: Date.now(),
+      description: "",
+      label: "Medium",
+      completed: false,
+    },
+    {
+      id: "play-lol",
+      todoTitle: "Play LoL",
+      dueDate: Date.now(),
+      description: "Play League of Legends",
+      label: "Low",
+      completed: false,
     },
   ]);
 
