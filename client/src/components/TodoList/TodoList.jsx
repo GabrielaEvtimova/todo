@@ -29,15 +29,13 @@ export default function TodoList({ showAddTodo, setShowAddTodo }) {
             );
           })
         ) : (
-          <p className="flex justify-center pb-4">
-            Great job! It seems you have completed all todos or never used this TodoApp!
-            <span
-              className="pl-1 hover:underline cursor-pointer"
+            <p
+              className="text-center w-[530px] md:w-[720px]"
               onClick={() => setShowAddTodo(!showAddTodo)}
             >
-              Do you want to create one?
-            </span>
-          </p>
+              Great job! It seems you have completed all todos or never used
+              this TodoApp!{" "}<span className="hover:underline text-center cursor-pointer">Do you want to create one?</span>
+            </p>
         )}
       </div>
     </div>
