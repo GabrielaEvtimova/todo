@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 
 function App() {
   const [showAddTodo, setShowAddTodo] = useState(false);
+  const [hasTodo, setHasTodo] = useState(false)
 
   return (
     <div>
@@ -18,12 +19,15 @@ function App() {
             <AddTodo
               showAddTodo={showAddTodo}
               setShowAddTodo={setShowAddTodo}
+              setHasTodo={setHasTodo}
             />
           </div>
           <div className="flex justify-center mt-16 h-full">
             <TodoList
               showAddTodo={showAddTodo}
               setShowAddTodo={setShowAddTodo}
+              hasTodo={hasTodo}
+              setHasTodo={setHasTodo}
             />
           </div>
         </div>
