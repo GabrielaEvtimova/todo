@@ -29,7 +29,7 @@ function Header({ setShowAddTodo, showAddTodo }) {
             strokeMiterlimit="2"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
-            className="h-9 w-9 fill-white cursor-pointer transform hover:scale-110 transition duration-200"
+            className="h-9 w-9 fill-white cursor-pointer transform hover:scale-110 transition duration-200 bg-black rounded-full"
           >
             <g data-name="51.Add">
               <path d="M12 24a12 12 0 1 1 12-12 12.013 12.013 0 0 1-12 12zm0-22a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2z" />
