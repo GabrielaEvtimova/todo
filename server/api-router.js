@@ -58,7 +58,8 @@ router.delete("/todos/:id", async (res, req) => {
     .collection("todos")
     .deleteOne({_id: new ObjectId(id)});
 
-   res.send("Successful")
+    // Note! Possible error here!
+   res.send(`Successful. ${todo.deletedCount} todo was deleted.`)
 
 });
 
