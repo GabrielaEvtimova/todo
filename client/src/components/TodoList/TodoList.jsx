@@ -21,9 +21,9 @@ export default function TodoList({
   return (
     <div className={`${!showAddTodo && "min-h-[84vh]"}`}>
       <h1
-        className={`flex justify-center mb-12 text-4xl text-white ${
-          !showAddTodo ? "mt-80" : "mt-2"
-        } ${todos.length > 0 && !showAddTodo && "mt-[80px]"}`}
+        className={`flex justify-center mb-12 text-4xl text-white mt-80  ${
+          todos.length > 0 && "mt-[80px]"
+        }`}
       >
         Todo List
       </h1>
@@ -41,8 +41,8 @@ export default function TodoList({
             className="text-center w-[530px] md:w-[720px]"
             onClick={() => setShowAddTodo(!showAddTodo)}
           >
-            Great job! It seems you have completed all todos or never used this
-            TodoApp!{" "}
+            Great job! It seems you have completed all todos! Or maybe you have
+            never used this TodoApp?{" "}
             <span className="hover:underline text-center cursor-pointer">
               Do you want to create one?
             </span>

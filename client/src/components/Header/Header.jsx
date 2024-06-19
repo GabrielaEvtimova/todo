@@ -1,36 +1,41 @@
 import PropTypes from "prop-types";
 
 function Header({ setShowAddTodo, showAddTodo }) {
-  
   return (
-    <div className="flex mx-auto justify-between select-none fixed w-full opacity-90">
+    <div
+      className="flex mx-auto justify-between select-none fixed 
+    w-full opacity-90"
+    >
       <div className="w-full">
         <div
-          className="flex justify-between font-bold text-2xl bg-[#0e1645] py-5 
-  lg:px-72 md:px-40 sm:px-24 px-16 text-neutral-100 shadow-lg shadow-white"
+          className="flex space-x-8 font-bold text-2xl bg-[#0e1645] py-5 
+   text-neutral-100 shadow-lg shadow-white
+    px-12 items-center"
         >
-          <h2 className="mt-[6px] cursor-pointer">
-            <span className="bg-[#ffea00] text-black p-1 rounded-md font-bold">
+          <h2>
+            <span className="bg-[#ffea00] text-black p-1 rounded-md font-bold ">
               Todo
             </span>{" "}
             App
           </h2>
+
           <svg
+            onClick={() => {
+              setShowAddTodo(!showAddTodo);
+            }}
             clipRule="evenodd"
             fillRule="evenodd"
             strokeLinejoin="round"
             strokeMiterlimit="2"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
-            className="h-10 w-10 fill-white cursor-pointer transform hover:scale-110 transition duration-200"
-            onClick={() => {
-              setShowAddTodo(!showAddTodo);
-            }}
+            className="h-9 w-9 fill-white cursor-pointer transform hover:scale-110 transition duration-200"
           >
-            <path
-              d="m20 20h-15.25c-.414 0-.75.336-.75.75s.336.75.75.75h15.75c.53 0 1-.47 1-1v-15.75c0-.414-.336-.75-.75-.75s-.75.336-.75.75zm-1-17c0-.478-.379-1-1-1h-15c-.62 0-1 .519-1 1v15c0 .621.52 1 1 1h15c.478 0 1-.379 1-1zm-15.5.5h14v14h-14zm6.25 6.25h-3c-.414 0-.75.336-.75.75s.336.75.75.75h3v3c0 .414.336.75.75.75s.75-.336.75-.75v-3h3c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-3v-3c0-.414-.336-.75-.75-.75s-.75.336-.75.75z"
-              fillRule="nonzero"
-            />
+            <g data-name="51.Add">
+              <path d="M12 24a12 12 0 1 1 12-12 12.013 12.013 0 0 1-12 12zm0-22a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2z" />
+              <path d="M11 6h2v12h-2z" />
+              <path d="M6 11h12v2H6z" />
+            </g>
           </svg>
         </div>
       </div>
