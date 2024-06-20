@@ -1,5 +1,6 @@
 import { apiServerUrl } from "../../../server/config.js";
 
+// Get all Todos from MongoDB
 export const getTodos = async () => {
   const resp = await fetch(`${apiServerUrl}/todos`);
   const data = await resp.json();
@@ -7,6 +8,7 @@ export const getTodos = async () => {
   return data.todos;
 };
 
+// Add Todo
 export const addTodo = async (todoTitle, id, label, dueDate, description) => {
   const todo = {
     todoTitle: todoTitle,
@@ -26,4 +28,11 @@ export const addTodo = async (todoTitle, id, label, dueDate, description) => {
 
   const data = await req.json();
   return data.todo;
+};
+
+// Delete Todo
+export const fetchDeleteTodo = async (id) => {
+  const req = await fetch(`${apiServerUrl}/todos/${id}`, {
+    method: "DELETE",
+  });
 };
