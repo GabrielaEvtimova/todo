@@ -32,7 +32,7 @@ export default function TodoList({
           todos.map((todo) => {
             return (
               <div key={todo._id}>
-                <Todo todo={todo} setChangeTodoList={setChangeTodoList} changeTodoList={changeTodoList}/>
+                <Todo todo={todo} setChangeTodoList={setChangeTodoList} changeTodoList={changeTodoList} showAddTodo={showAddTodo} setShowAddTodo={setShowAddTodo}/>
               </div>
             );
           })

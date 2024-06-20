@@ -2,16 +2,28 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { fetchDeleteTodo } from "../../services/api-client.js";
 import toast from "react-hot-toast";
+import Modal from "react-modal";
 
-export default function Todo({ todo, setChangeTodoList, changeTodoList }) {
+export default function Todo({
+  todo,
+  setChangeTodoList,
+  setShowAddTodo,
+  showAddTodo,
+}) {
   const [showDescription, setShowDescription] = useState(false);
+  const [onEdit, setOnEdit] = useState(false);
 
   const deleteTodo = (e, todo) => {
     e.preventDefault();
     fetchDeleteTodo(todo._id);
-    
+
     toast.success(`Todo has been successfully deleted.`);
     setChangeTodoList(true);
+  };
+
+  const handleEditTodo = (todo) => {
+    setOnEdit(!onEdit);
+    setShowAddTodo(!showAddTodo);
   };
 
   return (
@@ -21,7 +33,10 @@ export default function Todo({ todo, setChangeTodoList, changeTodoList }) {
       w-[320px] md:w-[700px] sm:w-[500px] lg:w-[720px] xl:w-[850px] mx-auto 
       mb-8"
     >
-      <h1 className="font-bold bg-[#0e1645] text-white rounded-md p-2 px-4 text-xl">
+      <h1
+        className="font-bold bg-[#0e1645] text-white rounded-md p-2 px-4 text-xl cursor-pointer"
+        onClick={() => setOnEdit(!onEdit)}
+      >
         {todo.todoTitle}
       </h1>
       <div className="flex justify-between items-center">
@@ -57,6 +72,24 @@ export default function Todo({ todo, setChangeTodoList, changeTodoList }) {
           {todo.description !== "" ? todo.description : "No description"}
         </p>
       )}{" "}
+      {onEdit && (
+        <Modal
+          isOpen={onEdit}
+          className="min-w-fit max-h-fit 
+        cursor-pointer select-none
+        px-12 py-2
+        absolute bottom-[50%] translate-y-[50%] right-[50%] translate-x-[50%] rounded-lg outline-none opacity-95 bg-[#ffea00] border-2 border-[#0e1645] shadow-black shadow-lg"
+          onRequestClose={() => setOnEdit(false)}
+          ariaHideApp={false}
+        >
+          <h4
+            className="font-bold text-xl"
+            onClick={() => handleEditTodo(todo)}
+          >
+            Edit Todo
+          </h4>
+        </Modal>
+      )}
     </div>
   );
 }
@@ -64,5 +97,6 @@ export default function Todo({ todo, setChangeTodoList, changeTodoList }) {
 Todo.propTypes = {
   todo: PropTypes.object,
   setChangeTodoList: PropTypes.func,
-  changeTodoList: PropTypes.bool,
+  setShowAddTodo: PropTypes.func,
+  showAddTodo: PropTypes.bool,
 };
