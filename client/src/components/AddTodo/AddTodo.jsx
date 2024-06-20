@@ -13,7 +13,7 @@ const options = [
   { value: "None", label: "None" },
 ];
 
-export default function AddTodo({ showAddTodo, setShowAddTodo, setHasTodo }) {
+export default function AddTodo({ showAddTodo, setShowAddTodo, setChangeTodoList }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [todo, setTodo] = useState({
     todoTitle: "",
@@ -36,7 +36,7 @@ export default function AddTodo({ showAddTodo, setShowAddTodo, setHasTodo }) {
     } else if (completedForm.label.value === "") {
       toast.error("Please select a priority!");
     } else if (completedForm.dueDate.value === null) {
-      toast.error("You have to pick deadline for your task!");
+      toast.error("You have to pick a deadline for your task!");
     } else if (new Date(completedForm.dueDate.value) < new Date() + 1) {
       toast.error("Due date should not be in the past!");
 
@@ -55,11 +55,11 @@ export default function AddTodo({ showAddTodo, setShowAddTodo, setHasTodo }) {
           setTodo(todo)
         );
         toast.success(
-          `Todo with title ${todo.todoTitle} was successfully created!`
+          `Todo with title ${todo.todoTitle} has been successfully created!`
         );
         setSelectedOption(null);
         setShowAddTodo(!showAddTodo);
-        setHasTodo(true);
+        setChangeTodoList(true);
       } catch (e) {
         console.log(e);
       }
@@ -128,5 +128,5 @@ export default function AddTodo({ showAddTodo, setShowAddTodo, setHasTodo }) {
 AddTodo.propTypes = {
   showAddTodo: PropTypes.bool,
   setShowAddTodo: PropTypes.func,
-  setHasTodo: PropTypes.func,
+  setChangeTodoList: PropTypes.func,
 };

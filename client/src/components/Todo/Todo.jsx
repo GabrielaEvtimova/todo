@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { fetchDeleteTodo } from "../../services/api-client.js";
+import toast from "react-hot-toast";
 
-export default function Todo({ todo }) {
+export default function Todo({ todo, setChangeTodoList, changeTodoList }) {
   const [showDescription, setShowDescription] = useState(false);
 
-  const deleteTodo = (todo) => {
-    console.log(todo._id)
-
-  }
+  const deleteTodo = (e, todo) => {
+    e.preventDefault();
+    fetchDeleteTodo(todo._id);
+    
+    toast.success(`Todo has been successfully deleted.`);
+    setChangeTodoList(true);
+  };
 
   return (
     <div
@@ -33,8 +38,10 @@ export default function Todo({ todo }) {
             Complete
           </button>
           <br />
-          <button className="mt-2 py-1  px-5 mx-2 border-2 border-[#0e1645] rounded-md text-center text-sm font-medium shadow-md shadow-black transform hover:scale-110 transition duration-200"
-          onClick={() => deleteTodo(todo)}>
+          <button
+            className="mt-2 py-1  px-5 mx-2 border-2 border-[#0e1645] rounded-md text-center text-sm font-medium shadow-md shadow-black transform hover:scale-110 transition duration-200"
+            onClick={(e) => deleteTodo(e, todo)}
+          >
             Delete
           </button>
         </div>
@@ -56,4 +63,6 @@ export default function Todo({ todo }) {
 
 Todo.propTypes = {
   todo: PropTypes.object,
+  setChangeTodoList: PropTypes.func,
+  changeTodoList: PropTypes.bool,
 };

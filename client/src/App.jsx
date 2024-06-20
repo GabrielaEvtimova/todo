@@ -4,10 +4,11 @@ import AddTodo from "./components/AddTodo/AddTodo";
 import Header from "./components/Header/Header";
 import TodoList from "./components/TodoList/TodoList";
 import Footer from "./components/Footer/Footer";
+import Todo from "./components/Todo/Todo";
 
 function App() {
   const [showAddTodo, setShowAddTodo] = useState(false);
-  const [hasTodo, setHasTodo] = useState(false)
+  const [changeTodoList, setChangeTodoList] = useState(false);
 
   return (
     <div>
@@ -19,15 +20,15 @@ function App() {
             <AddTodo
               showAddTodo={showAddTodo}
               setShowAddTodo={setShowAddTodo}
-              setHasTodo={setHasTodo}
+              setChangeTodoList={setChangeTodoList}
             />
           </div>
           <div className="flex justify-center mt-16 h-full">
             <TodoList
               showAddTodo={showAddTodo}
               setShowAddTodo={setShowAddTodo}
-              hasTodo={hasTodo}
-              setHasTodo={setHasTodo}
+              changeTodoList={changeTodoList}
+              setChangeTodoList={setChangeTodoList}
             />
           </div>
         </div>

@@ -6,17 +6,17 @@ import PropTypes from "prop-types";
 export default function TodoList({
   showAddTodo,
   setShowAddTodo,
-  hasTodo,
-  setHasTodo,
+  changeTodoList,
+  setChangeTodoList,
 }) {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     getTodos().then((todos) => setTodos([...todos]));
-    if (hasTodo) {
-      setHasTodo(false);
+    if (changeTodoList) {
+      setChangeTodoList(false);
     }
-  }, [hasTodo]);
+  }, [changeTodoList]);
 
   return (
     <div className={`${!showAddTodo && "min-h-[84vh]"}`}>
@@ -32,7 +32,7 @@ export default function TodoList({
           todos.map((todo) => {
             return (
               <div key={todo._id}>
-                <Todo todo={todo} />
+                <Todo todo={todo} setChangeTodoList={setChangeTodoList} changeTodoList={changeTodoList}/>
               </div>
             );
           })
@@ -56,6 +56,6 @@ export default function TodoList({
 TodoList.propTypes = {
   showAddTodo: PropTypes.bool,
   setShowAddTodo: PropTypes.func,
-  hasTodo: PropTypes.bool,
-  setHasTodo: PropTypes.func,
+  changeTodoList: PropTypes.bool,
+  setChangeTodoList: PropTypes.func,
 };
