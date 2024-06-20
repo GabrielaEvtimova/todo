@@ -86,7 +86,7 @@ export default function AddTodo({ showAddTodo, setShowAddTodo, setHasTodo }) {
             <input
               type="text"
               placeholder="Add title..."
-              className="w-full py-2 my-4 border-none outline-none rounded-md pl-2 placeholder:text-neutral-500"
+              className="shadow-md shadow-black w-full py-2 my-4 border-none outline-none rounded-md pl-2 placeholder:text-neutral-500"
               name="todoTitle"
             />
             <Select
@@ -97,11 +97,12 @@ export default function AddTodo({ showAddTodo, setShowAddTodo, setHasTodo }) {
               placeholder="Select a priority label"
               styles={reactSelectStyles}
               name="label"
+              className="shadow-md shadow-black"
             />
 
             <input
               type="date"
-              className="py-2 my-4 rounded-md px-2 outline-none w-full text-neutral-500 text-[11pt] valid:text-neutral-800"
+              className="shadow-md shadow-black py-2 my-4 rounded-md px-2 outline-none w-full text-neutral-500 text-[11pt] valid:text-neutral-800"
               name="dueDate"
             />
 
@@ -110,11 +111,11 @@ export default function AddTodo({ showAddTodo, setShowAddTodo, setHasTodo }) {
               id="description"
               cols="30"
               rows="5"
-              className="w-full outline-none px-2 py-2 rounded-md  placeholder:text-neutral-500"
+              className="shadow-md shadow-black w-full outline-none px-2 py-2 rounded-md  placeholder:text-neutral-500"
               placeholder="Add description..."
             ></textarea>
 
-            <button className=" bg-[#ffea00] py-2  rounded-md w-full font-semibold mt-6">
+            <button className=" bg-[#ffea00] py-2 border-2 border-[#0e1645] rounded-md w-full font-semibold mt-6 shadow-md shadow-black">
               Add Todo
             </button>
           </form>
