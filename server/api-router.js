@@ -54,17 +54,50 @@ router.delete("/todos/:id", async (res, req) => {
   const id = req.req.params.id;
 
   const client = await connectClient();
-  const todo = await client
-    .collection("todos")
-    .deleteOne({ _id: new ObjectId(id) });
+  await client.collection("todos").deleteOne({ _id: new ObjectId(id) });
 
   // Note! Possible error here!
-  res.send(
-    `${
-      todo.deletedCount === 0
-        ? `Something went wrong. Todo was not found`
-        : `Successful. ${todo.deletedCount} todo was deleted.`
-    }`
+  // res.send(
+  //   `${
+  //     todo.deletedCount === 0
+  //       ? `Something went wrong. Todo was not found`
+  //       : `Successful. ${todo.deletedCount} todo was deleted.`
+  //   }`
+  // );
+});
+
+// Edit Todo
+
+router.put("/todos/:id", async (req, res) => {
+  const id = req.params.id;
+
+  const client = await connectClient();
+
+  const updatedTodo = {};
+
+  if (req.body.todoTitle) {
+    updatedTodo.todoTitle = req.body.todoTitle;
+    updatedTodo.id = req.body.todoTitle.toLowerCase().replace(/\s/g, "-");
+  }
+  if (req.body.description) {
+    updatedTodo.description = req.body.description;
+  }
+  if (req.body.label) {
+    updatedTodo.label = req.body.label;
+  }
+  if (req.body.dueDate) {
+    updatedTodo.dueDate = req.body.dueDate;
+  }
+  if (req.body.comleted) {
+    updatedTodo.completed = req.body.dueDate;
+  }
+
+  await client.collection("todos").findOneAndUpdate(
+    { _id: new ObjectId(id) },
+    {
+      $set: updatedTodo,
+    },
+    { returnDocument: "after" }
   );
 });
 
