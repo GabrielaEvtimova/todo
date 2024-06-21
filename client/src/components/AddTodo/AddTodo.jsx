@@ -37,7 +37,7 @@ export default function AddTodo({ showAddTodo, setShowAddTodo, setChangeTodoList
       toast.error("Please select a priority!");
     } else if (completedForm.dueDate.value === null) {
       toast.error("You have to pick a deadline for your task!");
-    } else if (new Date(completedForm.dueDate.value) < new Date() + 1) {
+    } else if (new Date(completedForm.dueDate.value) < new Date()) {
       toast.error("Due date should not be in the past!");
 
       // Add Todo in MongoDB
