@@ -94,7 +94,7 @@ export default function AddTodo({
       <Modal
         isOpen={showAddTodo}
         className="min-w-fit max-h-fit 
-        w-[85%] sm:w-[60%] md:w-[65%] lg:w-[560px]
+       max-w-8xl
         p-3 sm:p-6 py-4 
         absolute bottom-[50%] translate-y-[50%] right-[50%] translate-x-[50%] rounded-lg outline-none opacity-95 bg-custom-gradient shadow-black shadow-lg"
         onRequestClose={() => setShowAddTodo(false)}
