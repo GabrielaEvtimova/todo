@@ -22,8 +22,9 @@ export default function TodoList({
   return (
     <div className={`${!showAddTodo && "min-h-[84vh]"}`}>
       <h1
-        className={`flex justify-center mb-12 text-4xl text-white mt-80  ${
-          todos.length > 0 && "mt-[80px]"
+        className={`flex justify-center mb-12 text-4xl md:text-6xl text-white
+        ${
+          todos.length > 0 ? "mt-[80px]" : " absolute bottom-[60%] translate-y-[60%] right-[50%] translate-x-[50%]"
         }`}
       >
         Todo List
@@ -43,7 +44,7 @@ export default function TodoList({
           })
         ) : (
           <p
-            className="text-center w-[530px] md:w-[720px]"
+            className="text-center w-full px-4 absolute bottom-[50%] translate-y-[50%] right-[50%] translate-x-[50%] md:text-2xl"
             onClick={() => setShowAddTodo(!showAddTodo)}
           >
             Great job! It seems you have completed all todos! Or maybe you have
