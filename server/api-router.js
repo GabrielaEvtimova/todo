@@ -84,7 +84,7 @@ router.put("/todos/:id", async (req, res) => {
   if (req.body.dueDate) {
     updatedTodo.dueDate = req.body.dueDate;
   }
-  if (req.body.comleted) {
+  if (req.body.completed) {
     updatedTodo.completed = req.body.completed;
   }
 
