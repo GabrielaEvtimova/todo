@@ -7,25 +7,23 @@ import {
 import toast from "react-hot-toast";
 import Modal from "react-modal";
 import EditTodo from "../EditTodo/EditTodo.jsx";
-import Loader from "../Loader/Loader.jsx";
 
 export default function Todo({ todo, setChangeTodoList }) {
   const [showDescription, setShowDescription] = useState(false);
   const [onEdit, setOnEdit] = useState(false);
   const [confirmEdit, setConfirmEdit] = useState(false);
-  const [onLoading, setOnLoading] = useState(false);
+
   const deleteTodo = (e, todo) => {
     e.preventDefault();
-    setOnLoading(true);
+
     try {
       setChangeTodoList(false);
-      fetchDeleteTodo(todo._id);
-      toast.success(`Todo has been successfully deleted.`);
+      fetchDeleteTodo(todo._id).then(() => {
+        setChangeTodoList(true);
+        toast.success(`Todo has been successfully deleted.`);
+      });
     } catch (e) {
       console.log(e);
-    } finally {
-      setChangeTodoList(true);
-      setOnLoading(false);
     }
   };
 
@@ -33,21 +31,15 @@ export default function Todo({ todo, setChangeTodoList }) {
     e.preventDefault();
     try {
       if (todo.completed === false) {
-        setOnLoading(true);
         setChangeTodoList(false);
-        fetchCompleteTodo(todo._id, !todo.completed).then((todo) => {
+        fetchCompleteTodo(todo._id, !todo.completed).then(() => {
           setChangeTodoList(true);
-          setOnLoading(false);
         });
       }
     } catch (e) {
       console.log(e);
     }
   };
-
-  if (onLoading) {
-    return <Loader />;
-  }
 
   return (
     <div
