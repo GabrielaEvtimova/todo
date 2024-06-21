@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { fetchDeleteTodo } from "../../services/api-client.js";
+import {
+  fetchCompleteTodo,
+  fetchDeleteTodo,
+} from "../../services/api-client.js";
 import toast from "react-hot-toast";
 import Modal from "react-modal";
 import EditTodo from "../EditTodo/EditTodo.jsx";
@@ -11,7 +14,6 @@ export default function Todo({ todo, setChangeTodoList }) {
   const [onEdit, setOnEdit] = useState(false);
   const [confirmEdit, setConfirmEdit] = useState(false);
   const [onLoading, setOnLoading] = useState(false);
-
   const deleteTodo = (e, todo) => {
     e.preventDefault();
     setOnLoading(true);
@@ -27,6 +29,22 @@ export default function Todo({ todo, setChangeTodoList }) {
     }
   };
 
+  const completeTodo = (e, todo) => {
+    e.preventDefault();
+    try {
+      if (todo.completed === false) {
+        setOnLoading(true);
+        setChangeTodoList(false);
+        fetchCompleteTodo(todo._id, !todo.completed).then((todo) => {
+          setChangeTodoList(true);
+          setOnLoading(false);
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   if (onLoading) {
     return <Loader />;
   }
@@ -34,9 +52,9 @@ export default function Todo({ todo, setChangeTodoList }) {
   return (
     <div
       key={todo._id}
-      className="shadow-inner shadow-neutral-800 p-4 rounded-md 
+      className={`shadow-inner shadow-neutral-800 p-4 rounded-md 
       w-[320px] md:w-[700px] sm:w-[500px] lg:w-[720px] xl:w-[850px] mx-auto 
-      mb-8"
+      mb-8 ${todo.completed === true && "opacity-50 line-through"}`}
     >
       <h1
         className="font-bold bg-[#0e1645] text-white rounded-md p-2 px-4 text-xl cursor-pointer"
@@ -54,12 +72,19 @@ export default function Todo({ todo, setChangeTodoList }) {
           </p>
         </div>
         <div className="">
-          <button className="mt-4 mb-1 py-1 px-[9px] mx-2 bg-[#ffea00] border-2 border-[#0e1645] rounded-md text-sm font-medium shadow-md shadow-black transform hover:scale-110 transition duration-200">
+          <button
+            className={`mt-4 mb-1 py-1 px-[9px] mx-2 ${
+              !todo.completed && "bg-[#ffea00]"
+            } border-2 border-[#0e1645] rounded-md text-sm font-medium shadow-md shadow-black transform hover:scale-110 transition duration-200`}
+            onClick={(e) => completeTodo(e, todo)}
+          >
             Complete
           </button>
           <br />
           <button
-            className="mt-2 py-1  px-5 mx-2 border-2 border-[#0e1645] rounded-md text-center text-sm font-medium shadow-md shadow-black transform hover:scale-110 transition duration-200"
+            className={`${
+              todo.completed && "bg-[#ffea00]"
+            } mt-2 py-1  px-5 mx-2 border-2 border-[#0e1645] rounded-md text-center text-sm font-medium shadow-md shadow-black transform hover:scale-110 transition duration-200`}
             onClick={(e) => deleteTodo(e, todo)}
           >
             Delete
@@ -77,7 +102,7 @@ export default function Todo({ todo, setChangeTodoList }) {
           {todo.description !== "" ? todo.description : "No description"}
         </p>
       )}{" "}
-      {onEdit && (
+      {onEdit && todo.completed === false && (
         <Modal
           isOpen={onEdit}
           className="min-w-fit max-h-fit 
@@ -95,7 +120,7 @@ export default function Todo({ todo, setChangeTodoList }) {
           </h4>
         </Modal>
       )}
-      {confirmEdit && (
+      {confirmEdit && todo.completed === false && (
         <EditTodo
           confirmEdit={confirmEdit}
           setConfirmEdit={setConfirmEdit}
