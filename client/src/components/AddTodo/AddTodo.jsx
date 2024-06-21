@@ -13,7 +13,11 @@ const options = [
   { value: "None", label: "None" },
 ];
 
-export default function AddTodo({ showAddTodo, setShowAddTodo, setChangeTodoList }) {
+export default function AddTodo({
+  showAddTodo,
+  setShowAddTodo,
+  setChangeTodoList,
+}) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [todo, setTodo] = useState({
     todoTitle: "",
@@ -25,19 +29,30 @@ export default function AddTodo({ showAddTodo, setShowAddTodo, setChangeTodoList
     completed: false,
   });
 
+  const setDateForValidation = (date) => {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const completedForm = e.currentTarget;
+  
+    // Set date for validations
+    const formDate = new Date(completedForm.dueDate.value)
+    const setFormDateForValidation = setDateForValidation(formDate);
+  
+    const currentDate = new Date();
+    const setCurrentDateForValidation = setDateForValidation(currentDate);
 
     // Validations
     if (completedForm.todoTitle.value === "") {
       toast.error("Please add a title for your task!");
     } else if (completedForm.label.value === "") {
       toast.error("Please select a priority!");
-    } else if (completedForm.dueDate.value === null) {
+    } else if (completedForm.dueDate.value === "") {
       toast.error("You have to pick a deadline for your task!");
-    } else if (new Date(completedForm.dueDate.value) < new Date()) {
+    } else if (setFormDateForValidation < setCurrentDateForValidation) {
       toast.error("Due date should not be in the past!");
 
       // Add Todo in MongoDB
