@@ -14,6 +14,7 @@ export default function TodoList({
   useEffect(() => {
     getTodos().then((todos) => setTodos([...todos]));
     if (changeTodoList) {
+      getTodos().then((todos) => setTodos([...todos]));
       setChangeTodoList(false);
     }
   }, [changeTodoList]);
@@ -32,7 +33,11 @@ export default function TodoList({
           todos.map((todo) => {
             return (
               <div key={todo._id}>
-                <Todo todo={todo} setChangeTodoList={setChangeTodoList} changeTodoList={changeTodoList} showAddTodo={showAddTodo} setShowAddTodo={setShowAddTodo}/>
+                <Todo
+                  todo={todo}
+                  setChangeTodoList={setChangeTodoList}
+                  changeTodoList={changeTodoList}
+                />
               </div>
             );
           })

@@ -3,28 +3,33 @@ import PropTypes from "prop-types";
 import { fetchDeleteTodo } from "../../services/api-client.js";
 import toast from "react-hot-toast";
 import Modal from "react-modal";
+import EditTodo from "../EditTodo/EditTodo.jsx";
+import Loader from "../Loader/Loader.jsx";
 
-export default function Todo({
-  todo,
-  setChangeTodoList,
-  setShowAddTodo,
-  showAddTodo,
-}) {
+export default function Todo({ todo, setChangeTodoList }) {
   const [showDescription, setShowDescription] = useState(false);
   const [onEdit, setOnEdit] = useState(false);
+  const [confirmEdit, setConfirmEdit] = useState(false);
+  const [onLoading, setOnLoading] = useState(false);
 
   const deleteTodo = (e, todo) => {
     e.preventDefault();
-    fetchDeleteTodo(todo._id);
-
-    toast.success(`Todo has been successfully deleted.`);
-    setChangeTodoList(true);
+    setOnLoading(true);
+    try {
+      setChangeTodoList(false);
+      fetchDeleteTodo(todo._id);
+      toast.success(`Todo has been successfully deleted.`);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setChangeTodoList(true);
+      setOnLoading(false);
+    }
   };
 
-  const handleEditTodo = (todo) => {
-    setOnEdit(!onEdit);
-    setShowAddTodo(!showAddTodo);
-  };
+  if (onLoading) {
+    return <Loader />;
+  }
 
   return (
     <div
@@ -84,11 +89,19 @@ export default function Todo({
         >
           <h4
             className="font-bold text-xl"
-            onClick={() => handleEditTodo(todo)}
+            onClick={() => setConfirmEdit(!confirmEdit)}
           >
             Edit Todo
           </h4>
         </Modal>
+      )}
+      {confirmEdit && (
+        <EditTodo
+          confirmEdit={confirmEdit}
+          setConfirmEdit={setConfirmEdit}
+          todo={todo}
+          setChangeTodoList={setChangeTodoList}
+        />
       )}
     </div>
   );
@@ -97,6 +110,4 @@ export default function Todo({
 Todo.propTypes = {
   todo: PropTypes.object,
   setChangeTodoList: PropTypes.func,
-  setShowAddTodo: PropTypes.func,
-  showAddTodo: PropTypes.bool,
 };

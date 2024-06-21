@@ -37,11 +37,11 @@ export default function AddTodo({
     e.preventDefault();
 
     const completedForm = e.currentTarget;
-  
+
     // Set date for validations
-    const formDate = new Date(completedForm.dueDate.value)
+    const formDate = new Date(completedForm.dueDate.value);
     const setFormDateForValidation = setDateForValidation(formDate);
-  
+
     const currentDate = new Date();
     const setCurrentDateForValidation = setDateForValidation(currentDate);
 
@@ -66,15 +66,23 @@ export default function AddTodo({
         const dueDate = new Date(completedForm.dueDate.value);
         const description = completedForm.description.value;
 
-        addTodo(todoTitle, id, label, dueDate, description).then((todo) =>
-          setTodo(todo)
-        );
-        toast.success(
-          `Todo with title ${todo.todoTitle} has been successfully created!`
-        );
-        setSelectedOption(null);
-        setShowAddTodo(!showAddTodo);
-        setChangeTodoList(true);
+        addTodo(todoTitle, id, label, dueDate, description).then((todo) => {
+          setTodo(todo);
+
+          toast.success(
+            `Todo with title ${todo.todoTitle} has been successfully created!`
+          );
+          setSelectedOption(null);
+          setShowAddTodo(!showAddTodo);
+          setChangeTodoList(true);
+        });
+
+        // toast.success(
+        //   `Todo with title ${todo.todoTitle} has been successfully created!`
+        // );
+        // setSelectedOption(null);
+        // setShowAddTodo(!showAddTodo);
+        // setChangeTodoList(true);
       } catch (e) {
         console.log(e);
       }
