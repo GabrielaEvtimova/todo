@@ -64,11 +64,11 @@ export default function Todo({ todo, setChangeTodoList }) {
       </h1>
       <div className="flex justify-between items-center">
         <div>
-          <p className="mt-4 px-4 font-medium text-[13pt]">
-            Due date: {new Date(todo.dueDate).toLocaleDateString()}
+          <p className="mt-4 px-4 font-light text-[13pt]">
+            Due date: <span className="font-medium">{new Date(todo.dueDate).toLocaleDateString("ro-EN")}</span>
           </p>
-          <p className="mt-1 px-4 font-medium text-[13pt]">
-            Priority: {todo.label}
+          <p className="mt-1 px-4 font-light text-[13pt]">
+            Priority: <span className="font-medium">{todo.label}</span>
           </p>
         </div>
         <div className="">
@@ -93,7 +93,7 @@ export default function Todo({ todo, setChangeTodoList }) {
         </div>
       </div>
       <h2
-        className="mt-4 px-4 text-[13pt] text-violet-900 border-t border-neutral-400 pt-2 hover:underline cursor-pointer"
+        className="mt-4 px-4 text-[13pt] text-violet-900 border-t border-neutral-400 pt-2 hover:underline cursor-pointer font-light"
         onClick={() => setShowDescription(!showDescription)}
       >
         Show description
