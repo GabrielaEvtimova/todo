@@ -36,3 +36,44 @@ export const fetchDeleteTodo = async (id) => {
     method: "DELETE",
   });
 };
+
+// Edit Todo
+export const fetchEditTodo = async (
+  _id,
+  completed,
+  todoTitle,
+  id,
+  dueDate,
+  label,
+  description
+) => {
+  const todo = {
+    todoTitle: todoTitle,
+    id: id,
+    label: label,
+    dueDate: dueDate,
+    description: description,
+    completed: completed,
+  };
+  await fetch(`${apiServerUrl}/todos/${_id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(todo),
+  });
+};
+
+export const fetchCompleteTodo = async (id, completed) => {
+  const todo = {
+    completed: completed,
+  };
+
+  await fetch(`${apiServerUrl}/todos/${_id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(todo),
+  });
+};
