@@ -52,8 +52,8 @@ export default function Todo({ todo, setChangeTodoList }) {
   return (
     <div
       key={todo._id}
-      className={`shadow-inner shadow-neutral-800 p-4 rounded-md 
-      w-[320px] md:w-[700px] sm:w-[500px] lg:w-[720px] xl:w-[850px] mx-auto 
+      className={`group shadow-inner shadow-neutral-800 p-4 rounded-md 
+      max-w-6xl mx-4
       mb-8 ${todo.completed === true && "opacity-50 line-through"}`}
     >
       <h1
@@ -65,7 +65,10 @@ export default function Todo({ todo, setChangeTodoList }) {
       <div className="flex justify-between items-center">
         <div>
           <p className="mt-4 px-4 font-light text-[13pt]">
-            Due date: <span className="font-medium">{new Date(todo.dueDate).toLocaleDateString("ro-EN")}</span>
+            Due date:{" "}
+            <span className="font-medium">
+              {new Date(todo.dueDate).toLocaleDateString("ro-EN")}
+            </span>
           </p>
           <p className="mt-1 px-4 font-light text-[13pt]">
             Priority: <span className="font-medium">{todo.label}</span>
@@ -74,7 +77,8 @@ export default function Todo({ todo, setChangeTodoList }) {
         <div className="">
           <button
             className={`mt-4 mb-1 py-1 px-[9px] mx-2 ${
-              !todo.completed && "bg-[#ffea00] transform hover:scale-110 transition duration-200"
+              !todo.completed &&
+              "bg-[#ffea00] transform hover:scale-110 transition duration-200"
             } border-2 border-[#0e1645] rounded-md text-sm font-medium shadow-md shadow-black
             ${todo.completed && "cursor-not-allowed"}`}
             onClick={(e) => completeTodo(e, todo)}

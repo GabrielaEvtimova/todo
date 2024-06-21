@@ -45,7 +45,7 @@ export default function TodoList({
         </p>
       )}
 
-      <div className="pb-28">
+      <div className="pb-28 sm:grid sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto items-center justify-center py-4">
         {todos.length > 0 ? (
           todos.map((todo) => {
             return (
