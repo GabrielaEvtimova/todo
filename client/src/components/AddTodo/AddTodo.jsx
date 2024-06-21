@@ -105,7 +105,7 @@ export default function AddTodo({
             Create New Task
           </h1>
 
-          <form className="w-full" onSubmit={handleSubmit}>
+          <form className="w-5xl" onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Add title..."
