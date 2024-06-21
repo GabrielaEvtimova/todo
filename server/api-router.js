@@ -52,14 +52,16 @@ router.post("/todos", async (req, res) => {
 
 // Delete Todo
 
-router.delete("/todos/:id", async (res, req) => {
-  const id = req.req.params.id;
+router.delete("/todos/:id", async (req, res) => {
+  const id = req.params.id;
 
   const client = await connectClient();
-  await client.collection("todos").deleteOne({ _id: new ObjectId(id) });
-
+  const result = await client
+    .collection("todos")
+    .deleteOne({ _id: new ObjectId(id) });
   // Note! Possible error here!
-  // res.send("DELETE method called")
+  res.send("DELETE request called");
+  return result;
 });
 
 // Edit Todo
