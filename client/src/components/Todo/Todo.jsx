@@ -101,6 +101,8 @@ export default function Todo({ todo, setChangeTodoList }) {
           setConfirmEdit={setConfirmEdit}
           todo={todo}
           setChangeTodoList={setChangeTodoList}
+          setOnEdit={setOnEdit}
+          onEdit={onEdit}
         />
       )}
     </div>
