@@ -57,7 +57,7 @@ router.delete("/todos/:id", async (res, req) => {
   await client.collection("todos").deleteOne({ _id: new ObjectId(id) });
 
   // Note! Possible error here!
-  res.send("DELETE method")
+  // res.send("DELETE method")
 });
 
 // Edit Todo
@@ -93,7 +93,7 @@ router.put("/todos/:id", async (req, res) => {
     },
     { returnDocument: "after" }
   );
-  res.send("PUT method")
+  // res.send("PUT method")
 });
 
 export default router;
