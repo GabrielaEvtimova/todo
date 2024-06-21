@@ -74,10 +74,11 @@ export default function EditTodo({
           dueDate,
           label,
           description
-        ).then((todo) => console.log(todo));
-        setConfirmEdit(!confirmEdit);
-        setChangeTodoList(true);
-        setOnEdit(!onEdit);
+        ).then(() => {
+          setConfirmEdit(!confirmEdit);
+          setChangeTodoList(true);
+          setOnEdit(!onEdit);
+        });
       } catch (e) {
         console.log(e);
       }
