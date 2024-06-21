@@ -85,7 +85,7 @@ router.put("/todos/:id", async (req, res) => {
     updatedTodo.dueDate = req.body.dueDate;
   }
   if (req.body.comleted) {
-    updatedTodo.completed = req.body.dueDate;
+    updatedTodo.completed = req.body.completed;
   }
 
   await client.collection("todos").findOneAndUpdate(
