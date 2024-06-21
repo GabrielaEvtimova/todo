@@ -55,13 +55,16 @@ export const fetchEditTodo = async (
     description: description,
     completed: completed,
   };
-  await fetch(`${apiServerUrl}/todos/${_id}`, {
+  const req = await fetch(`${apiServerUrl}/todos/${_id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(todo),
   });
+
+  const data = await req.json();
+  return data.todo;
 };
 
 export const fetchCompleteTodo = async (id, completed) => {
@@ -69,11 +72,14 @@ export const fetchCompleteTodo = async (id, completed) => {
     completed: completed,
   };
 
-  await fetch(`${apiServerUrl}/todos/${_id}`, {
+  const req = await fetch(`${apiServerUrl}/todos/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(todo),
   });
+
+  const data = await req.json();
+  return data.todo;
 };
