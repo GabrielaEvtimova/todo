@@ -20,6 +20,7 @@ router.get("/todos", async (req, res) => {
       dueDate: 1,
       label: 1,
       _id: 1,
+      completed: 1,
     })
     .toArray();
 
@@ -46,7 +47,7 @@ router.post("/todos", async (req, res) => {
     .findOne({ _id: doc.insertedId });
 
   res.send({ todo });
-  return todo
+  return todo;
 });
 
 // Delete Todo
@@ -95,8 +96,12 @@ router.put("/todos/:id", async (req, res) => {
     { returnDocument: "after" }
   );
 
-  // Note! Possible error here!
-  // res.send("PUT method called")
+  const todo = await client
+    .collection("todos")
+    .findOne({ _id: new ObjectId(id) });
+
+  res.send({ todo });
+  return todo;
 });
 
 export default router;
