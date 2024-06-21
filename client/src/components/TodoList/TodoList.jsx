@@ -19,16 +19,32 @@ export default function TodoList({
     }
   }, [changeTodoList]);
 
+  const completedTodos =
+    todos.length > 0 && todos.filter((todo) => todo.completed === true).length;
+
   return (
     <div className={`${!showAddTodo && "min-h-[84vh]"}`}>
       <h1
-        className={`flex justify-center mb-12 text-4xl md:text-6xl text-white
+        className={`flex justify-center ${
+          completedTodos === 0 ? "mb-12" : "mb-4"
+        } text-4xl md:text-6xl text-white
         ${
-          todos.length > 0 ? "mt-[80px]" : " absolute bottom-[60%] translate-y-[60%] right-[50%] translate-x-[50%]"
+          todos.length > 0
+            ? "mt-[80px]"
+            : " absolute bottom-[60%] translate-y-[60%] right-[50%] translate-x-[50%]"
         }`}
       >
         Todo List
       </h1>
+      {completedTodos !== 0 && (
+        <p className="flex justify-center text-lg text-white mb-12 md:text-2xl font-thin text-opacity-70">
+          {todos.length > 0 &&
+            (completedTodos === 1
+              ? `${completedTodos} task complete. Nice work!`
+              : `${completedTodos} tasks complete. Nice work!`)}
+        </p>
+      )}
+
       <div className="pb-28">
         {todos.length > 0 ? (
           todos.map((todo) => {

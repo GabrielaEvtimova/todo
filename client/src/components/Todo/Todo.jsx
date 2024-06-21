@@ -74,8 +74,9 @@ export default function Todo({ todo, setChangeTodoList }) {
         <div className="">
           <button
             className={`mt-4 mb-1 py-1 px-[9px] mx-2 ${
-              !todo.completed && "bg-[#ffea00]"
-            } border-2 border-[#0e1645] rounded-md text-sm font-medium shadow-md shadow-black transform hover:scale-110 transition duration-200`}
+              !todo.completed && "bg-[#ffea00] transform hover:scale-110 transition duration-200"
+            } border-2 border-[#0e1645] rounded-md text-sm font-medium shadow-md shadow-black
+            ${todo.completed && "cursor-not-allowed"}`}
             onClick={(e) => completeTodo(e, todo)}
           >
             Complete
