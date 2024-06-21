@@ -32,7 +32,7 @@ export const addTodo = async (todoTitle, id, label, dueDate, description) => {
 
 // Delete Todo
 export const fetchDeleteTodo = async (id) => {
-  const req = await fetch(`${apiServerUrl}/todos/${id}`, {
+  await fetch(`${apiServerUrl}/todos/${id}`, {
     method: "DELETE",
   });
 };
