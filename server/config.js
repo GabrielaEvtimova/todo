@@ -1,10 +1,16 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 // Server
-export const port = 3000;
-export const serverUrl = `http://localhost:${port}`;
+export const port = process.env.PORT || 3000;
+export const host = process.env.HOST || "localhost";
+export const serverUrl = `http://${host}:${port}`;
 
 // MongoDB
-export const mongoDbUrl = "mongodb://localhost:27017";
-export const databaseName = "local"
+const mongoPort = process.env.MONGO_PORT || 27017;
+export const mongoDbUrl = `mongodb://${host}:${mongoPort}`;
+export const databaseName = process.env.MONGO_DB || "local";
 
 // API Server
-export const apiServerUrl = `http://localhost:${port}/api`
+const apiPath = process.env.API_SERVER_PATH || "api";
+export const apiServerUrl = `http://${host}:${port}/${apiPath}`;

@@ -18,7 +18,6 @@ export const connectClient = async () => {
   return connectedClient.db(databaseName);
 };
 
-
 export const stopClient = async () => {
   await connectedClient?.close();
 };

@@ -1,4 +1,5 @@
-import { apiServerUrl } from "../../../server/config.js";
+// import { apiServerUrl } from "../../../server/config.js";
+const apiServerUrl = import.meta.env.VITE_API_SERVER_URL;
 
 // Get all Todos from MongoDB
 export const getTodos = async () => {
