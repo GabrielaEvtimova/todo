@@ -61,7 +61,7 @@ export default function TodoList({
         ) : (
           <div className="text-center w-full px-4 absolute bottom-[50%] translate-y-[50%] right-[50%] translate-x-[50%] md:text-2xl">
             <p
-              className=""
+              className="mt-4"
               onClick={() => setShowAddTodo(!showAddTodo)}
             >
               Great job! It seems you have completed all todos! Or maybe you
