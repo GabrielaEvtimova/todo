@@ -32,11 +32,10 @@
 
   /* text-[11pt] */
   font-size: 11pt;
-  height: 32px;
+  height: 37px;
 }
 
 .custom-input:valid {
   /* valid:text-neutral-800 */
   color: #1f2937;
 }
-
