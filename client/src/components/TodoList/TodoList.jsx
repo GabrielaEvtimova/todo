@@ -65,7 +65,7 @@ export default function TodoList({
           >
             Great job! It seems you have completed all todos! Or maybe you have
             never used this TodoApp?{" "}
-            <span className="hover:underline text-center cursor-pointer">
+            <span className="hover:underline text-center cursor-pointer text-violet-900">
               Do you want to create one?
             </span>
           </p>
