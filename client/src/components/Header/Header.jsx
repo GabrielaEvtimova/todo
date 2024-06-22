@@ -4,7 +4,7 @@ function Header({ setShowAddTodo, showAddTodo }) {
   return (
     <div
       className="flex mx-auto justify-between select-none fixed 
-    w-full opacity-90 top-0"
+    w-full top-0"
     >
       <div className="w-full">
         <div
