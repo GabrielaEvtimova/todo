@@ -13,7 +13,7 @@ function App() {
   return (
     <div>
       <Toaster position="bottom-center" reverseOrder={false} />
-      <div className={`bg-custom-gradient select-none w-full min-h-screen`}>
+      <div className={`bg-custom-gradient select-none w-full min-h-screen top-0`}>
         <Header setShowAddTodo={setShowAddTodo} showAddTodo={showAddTodo} />
         <div>
           <div className="flex justify-center items-center">
