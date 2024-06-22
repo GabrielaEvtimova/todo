@@ -25,9 +25,9 @@ export default function TodoList({
   return (
     <div className={`${!showAddTodo && "min-h-[84vh]"}`}>
       <h1
-        className={`flex justify-center ${
+        className={`flex justify-center text-center ${
           completedTodos === 0 ? "mb-12" : "mb-4"
-        } text-4xl md:text-6xl text-white
+        } text-3xl sm:text-4xl md:text-6xl text-white
         ${
           todos.length > 0
             ? "mt-[80px]"
@@ -59,16 +59,18 @@ export default function TodoList({
             );
           })
         ) : (
-          <p
-            className="text-center w-full px-4 absolute bottom-[50%] translate-y-[50%] right-[50%] translate-x-[50%] md:text-2xl"
-            onClick={() => setShowAddTodo(!showAddTodo)}
-          >
-            Great job! It seems you have completed all todos! Or maybe you have
-            never used this TodoApp?{" "}
-            <span className="hover:underline text-center cursor-pointer text-violet-900">
+          <div className="text-center w-full px-4 absolute bottom-[50%] translate-y-[50%] right-[50%] translate-x-[50%] md:text-2xl">
+            <p
+              className=""
+              onClick={() => setShowAddTodo(!showAddTodo)}
+            >
+              Great job! It seems you have completed all todos! Or maybe you
+              have never used this TodoApp?{" "}
+            </p>
+            <p className="hover:underline text-center cursor-pointer text-violet-900 py-2">
               Do you want to create one?
-            </span>
-          </p>
+            </p>
+          </div>
         )}
       </div>
     </div>
