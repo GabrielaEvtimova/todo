@@ -118,10 +118,10 @@ export default function EditTodo({
                 name="label"
                 className="shadow-md shadow-black"
               />
-
+              <p className="mt-2 py-1 px-1 font-light ">Set a deadline</p>
               <input
                 type="date"
-                className="shadow-md shadow-black py-2 my-4 rounded-md px-2 outline-none w-full text-neutral-500 text-[11pt] valid:text-neutral-800"
+                className="shadow-md shadow-black py-2 mb-4 rounded-md px-2 outline-none w-full text-neutral-500 text-[11pt] valid:text-neutral-800"
                 name="dueDate"
                 defaultValue={
                   new Date(todo.dueDate).toISOString().split("T")[0]
