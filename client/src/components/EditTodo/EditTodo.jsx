@@ -4,6 +4,7 @@ import Select from "react-select";
 import { reactSelectStyles } from "../../services/react-select-styles";
 import PropTypes from "prop-types";
 import { fetchEditTodo } from "../../services/api-client";
+import "./EditTodo.css";
 
 const options = [
   { value: "High", label: "High" },
@@ -118,12 +119,12 @@ export default function EditTodo({
                 name="label"
                 className="shadow-md shadow-black"
               />
-              <p className="mt-4 py-1 px-1 font-thin text-white ">
+              <p className="mt-4 py-1 px-1 font-thin text-neutral-200  ">
                 Set a deadline:
               </p>
               <input
                 type="date"
-                className="shadow-md shadow-black py-2 mb-4 rounded-md px-2 outline-none w-full text-neutral-500 text-[11pt] valid:text-neutral-800"
+                className="custom-input-edit"
                 name="dueDate"
                 defaultValue={
                   new Date(todo.dueDate).toISOString().split("T")[0]

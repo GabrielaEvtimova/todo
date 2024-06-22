@@ -116,7 +116,7 @@ export default function AddTodo({
               name="label"
               className="shadow-md shadow-black"
             />
-            <p className="mt-4 py-1 px-1 font-thin text-white ">
+            <p className="mt-4 py-1 px-1 font-thin text-neutral-200 ">
               Set a deadline:
             </p>
             <input
