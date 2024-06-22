@@ -118,7 +118,9 @@ export default function EditTodo({
                 name="label"
                 className="shadow-md shadow-black"
               />
-              <p className="mt-2 py-1 px-1 font-light ">Set a deadline</p>
+              <p className="mt-4 py-1 px-1 font-thin text-white ">
+                Set a deadline:
+              </p>
               <input
                 type="date"
                 className="shadow-md shadow-black py-2 mb-4 rounded-md px-2 outline-none w-full text-neutral-500 text-[11pt] valid:text-neutral-800"
