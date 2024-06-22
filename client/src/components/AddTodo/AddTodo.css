@@ -33,6 +33,7 @@
   /* text-[11pt] */
   font-size: 11pt;
   height: 37px;
+  background-color: white;
 }
 
 .custom-input:valid {
