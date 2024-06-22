@@ -5,6 +5,7 @@ import { reactSelectStyles } from "../../services/react-select-styles";
 import { addTodo } from "../../services/api-client.js";
 import toast from "react-hot-toast";
 import Modal from "react-modal";
+import './AddTodo.css'
 
 const options = [
   { value: "High", label: "High" },
@@ -127,6 +128,7 @@ export default function AddTodo({
             </p>
             <input
               type="date"
+              id="datePicker"
               className="shadow-md shadow-black py-2 mb-4 rounded-md px-2 outline-none w-full text-neutral-500 text-[11pt] valid:text-neutral-800"
               name="dueDate"
             />
