@@ -5,7 +5,7 @@ import { reactSelectStyles } from "../../services/react-select-styles";
 import { addTodo } from "../../services/api-client.js";
 import toast from "react-hot-toast";
 import Modal from "react-modal";
-import './AddTodo.css'
+import "./AddTodo.css";
 
 const options = [
   { value: "High", label: "High" },
@@ -125,6 +125,7 @@ export default function AddTodo({
               //className="shadow-md shadow-black py-2 mb-4 rounded-md px-2 outline-none w-full text-neutral-500 text-[11pt] valid:text-neutral-800"
               className="custom-input"
               name="dueDate"
+              placeholder="Set a deadline..."
             />
 
             <textarea
