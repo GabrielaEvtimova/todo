@@ -77,13 +77,6 @@ export default function AddTodo({
           setShowAddTodo(!showAddTodo);
           setChangeTodoList(true);
         });
-
-        // toast.success(
-        //   `Todo with title ${todo.todoTitle} has been successfully created!`
-        // );
-        // setSelectedOption(null);
-        // setShowAddTodo(!showAddTodo);
-        // setChangeTodoList(true);
       } catch (e) {
         console.log(e);
       }
@@ -129,7 +122,8 @@ export default function AddTodo({
             <input
               type="date"
               id="datePicker"
-              className="shadow-md shadow-black py-2 mb-4 rounded-md px-2 outline-none w-full text-neutral-500 text-[11pt] valid:text-neutral-800"
+              //className="shadow-md shadow-black py-2 mb-4 rounded-md px-2 outline-none w-full text-neutral-500 text-[11pt] valid:text-neutral-800"
+              className="custom-input"
               name="dueDate"
             />
 
