@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getTodos } from "../../services/api-client";
 import Todo from "../Todo/Todo";
 import PropTypes from "prop-types";
+import { setDateForValidation } from "../../services/date-formatting";
 
 export default function TodoList({
   showAddTodo,
@@ -47,17 +48,23 @@ export default function TodoList({
 
       <div className="pb-28 sm:grid sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto items-center justify-center py-4">
         {todos.length > 0 ? (
-          todos.map((todo) => {
-            return (
-              <div key={todo._id}>
-                <Todo
-                  todo={todo}
-                  setChangeTodoList={setChangeTodoList}
-                  changeTodoList={changeTodoList}
-                />
-              </div>
-            );
-          })
+          todos
+            .sort((a, b) => {
+              const aDate = new Date(a.dueDate);
+              const bDate = new Date(b.dueDate);
+              return setDateForValidation(aDate) - setDateForValidation(bDate);
+            })
+            .map((todo) => {
+              return (
+                <div key={todo._id}>
+                  <Todo
+                    todo={todo}
+                    setChangeTodoList={setChangeTodoList}
+                    changeTodoList={changeTodoList}
+                  />
+                </div>
+              );
+            })
         ) : (
           <div className="text-center w-full px-4 absolute bottom-[50%] translate-y-[50%] right-[50%] translate-x-[50%] md:text-2xl">
             <p
@@ -67,7 +74,10 @@ export default function TodoList({
               Great job! It seems you have completed all todos! Or maybe you
               have never used this TodoApp?{" "}
             </p>
-            <p className="hover:underline text-center cursor-pointer text-violet-900 py-2">
+            <p
+              className="hover:underline text-center cursor-pointer text-violet-900 py-2"
+              onClick={() => setShowAddTodo(!showAddTodo)}
+            >
               Do you want to create one?
             </p>
           </div>
