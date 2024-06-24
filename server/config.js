@@ -13,4 +13,5 @@ export const databaseName = process.env.MONGO_DB || "local";
 
 // API Server
 const apiPath = process.env.API_SERVER_PATH || "api";
-export const apiServerUrl = `http://${host}:${port}/${apiPath}`;
+// export const apiServerUrl = `http://${host}:${port}/${apiPath}`;
+export const apiServerUrl = `https://todo-quay.onrender.com/${apiPath}`
