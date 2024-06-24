@@ -6,6 +6,7 @@ import { addTodo } from "../../services/api-client.js";
 import toast from "react-hot-toast";
 import Modal from "react-modal";
 import "./AddTodo.css";
+import { setDateForValidation } from "../../services/date-formatting.js";
 
 const options = [
   { value: "High", label: "High" },
@@ -29,10 +30,6 @@ export default function AddTodo({
     description: "",
     completed: false,
   });
-
-  const setDateForValidation = (date) => {
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
